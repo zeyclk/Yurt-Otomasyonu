@@ -1,0 +1,120 @@
+﻿@model Yurt.Models.misafirler
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>KayitSil</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <h3>Bunu silmek isteğinize emin misiniz?</h3>
+    <div>
+        
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_tcPas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Ad")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_ad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Soyad")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_soyad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Cinsiyet")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_cinsiyet)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Uyruk")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_uyruk)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Telefon")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_tel)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Giriş Tarihi")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_giris)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Çıkış Tarihi")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_cikis)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Kalacak Gün Sayısı")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_kgun)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Yatak Ücreti")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_yatakucret)
+            </dd>
+    
+            <dt>
+               @Html.DisplayName("Borç")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_borc)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="btn btn-default" /> |
+                @Html.ActionLink("Listeye Geri Dön", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

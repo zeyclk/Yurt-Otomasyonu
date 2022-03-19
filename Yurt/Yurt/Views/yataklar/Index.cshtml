@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Yurt.Models.yataklar>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Yatak Ekle", "YatakEkle")
+    </p>
+    <table class="table1">
+        <tr>
+            <th>
+                @Html.DisplayName("Yatak No")
+            </th>
+            <th>
+                @Html.DisplayName("Oda No")
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.yat_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.odalar.oda_no)
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "YatakGuncelle", new { id=item.yat_id }) |
+                @Html.ActionLink("Sil", "YatakSil", new { id=item.yat_id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

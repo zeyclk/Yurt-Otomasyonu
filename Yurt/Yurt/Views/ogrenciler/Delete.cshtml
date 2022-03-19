@@ -1,0 +1,120 @@
+﻿@model Yurt.Models.ogrenciler
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>ogrenciler</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ogr_tcPas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_tcPas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ogr_ad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_ad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ogr_soyad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_soyad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ogr_cinsiyet)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_cinsiyet)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ogr_kan)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_kan)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ogr_uyruk)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_uyruk)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ogr_tel)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_tel)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ogr_email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_email)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ogr_adres)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_adres)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ogr_egitim)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_egitim)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.odalar.oda_no)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.odalar.oda_no)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@model Yurt.Models.yetkililer
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>yetkililer</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.yet_kullaniciAd)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.yet_kullaniciAd)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.yet_sifre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.yet_sifre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.yet_tel)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.yet_tel)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.yet_email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.yet_email)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.yet_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

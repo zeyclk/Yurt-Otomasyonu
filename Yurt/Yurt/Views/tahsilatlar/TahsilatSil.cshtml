@@ -1,0 +1,64 @@
+﻿@model Yurt.Models.tahsilatlar
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TahsilatSil</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <h3>Bunu silmek istediğinize emin misiniz?</h3>
+    <div>
+       
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Tahsilat Tutar")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tah_tutar)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Son Ödeme Tarihi")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tah_sontarih)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Tahsilat Durumu")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tah_durum)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("TC/Pasaport No")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogrenciler.ogr_tcPas)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="btn btn-default" /> |
+                @Html.ActionLink("Listeye Geri Dön", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

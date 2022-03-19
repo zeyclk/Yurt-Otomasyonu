@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="YurtOtomasyonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="misafirler">
+          <Key>
+            <PropertyRef Name="mis_id" />
+          </Key>
+          <Property Name="mis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mis_tcPas" Type="char" MaxLength="11" />
+          <Property Name="mis_ad" Type="varchar" MaxLength="50" />
+          <Property Name="mis_soyad" Type="varchar" MaxLength="50" />
+          <Property Name="mis_cinsiyet" Type="char" MaxLength="1" />
+          <Property Name="mis_uyruk" Type="varchar" MaxLength="10" />
+          <Property Name="mis_tel" Type="varchar" MaxLength="20" />
+          <Property Name="mis_giris" Type="date" />
+          <Property Name="mis_cikis" Type="date" />
+          <Property Name="mis_kgun" Type="int" />
+          <Property Name="mis_yatakucret" Type="int" />
+          <Property Name="mis_borc" Type="int" />
+        </EntityType>
+        <EntityType Name="odalar">
+          <Key>
+            <PropertyRef Name="oda_id" />
+          </Key>
+          <Property Name="oda_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="oda_no" Type="char" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="ogrenciler">
+          <Key>
+            <PropertyRef Name="ogr_id" />
+          </Key>
+          <Property Name="ogr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogr_tcPas" Type="char" MaxLength="11" />
+          <Property Name="ogr_ad" Type="varchar" MaxLength="50" />
+          <Property Name="ogr_soyad" Type="varchar" MaxLength="50" />
+          <Property Name="ogr_cinsiyet" Type="char" MaxLength="1" />
+          <Property Name="ogr_kan" Type="varchar" MaxLength="10" />
+          <Property Name="ogr_uyruk" Type="varchar" MaxLength="10" />
+          <Property Name="ogr_tel" Type="varchar" MaxLength="20" />
+          <Property Name="ogr_email" Type="varchar" MaxLength="50" />
+          <Property Name="ogr_adres" Type="varchar(max)" />
+          <Property Name="ogr_egitim" Type="varchar" MaxLength="50" />
+          <Property Name="oda_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tahsilatlar">
+          <Key>
+            <PropertyRef Name="tah_id" />
+          </Key>
+          <Property Name="tah_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tah_ogrID" Type="int" />
+          <Property Name="tah_tutar" Type="varchar" MaxLength="10" />
+          <Property Name="tah_sontarih" Type="date" />
+          <Property Name="tah_durum" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="yataklar">
+          <Key>
+            <PropertyRef Name="yat_id" />
+          </Key>
+          <Property Name="yat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yat_no" Type="char" MaxLength="1" />
+          <Property Name="yat_durum" Type="char" MaxLength="1" />
+          <Property Name="oda_id" Type="int" />
+        </EntityType>
+        <EntityType Name="yetkililer">
+          <Key>
+            <PropertyRef Name="yet_id" />
+          </Key>
+          <Property Name="yet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yet_kullaniciAd" Type="varchar" MaxLength="50" />
+          <Property Name="yet_sifre" Type="varchar" MaxLength="50" />
+          <Property Name="yet_tel" Type="varchar" MaxLength="20" />
+          <Property Name="yet_email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ogrenciler_odalar">
+          <End Role="odalar" Type="Self.odalar" Multiplicity="0..1" />
+          <End Role="ogrenciler" Type="Self.ogrenciler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odalar">
+              <PropertyRef Name="oda_id" />
+            </Principal>
+            <Dependent Role="ogrenciler">
+              <PropertyRef Name="oda_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tahsilatlar_ogrenciler">
+          <End Role="ogrenciler" Type="Self.ogrenciler" Multiplicity="0..1" />
+          <End Role="tahsilatlar" Type="Self.tahsilatlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ogrenciler">
+              <PropertyRef Name="ogr_id" />
+            </Principal>
+            <Dependent Role="tahsilatlar">
+              <PropertyRef Name="tah_ogrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_yataklar_odalar">
+          <End Role="odalar" Type="Self.odalar" Multiplicity="0..1" />
+          <End Role="yataklar" Type="Self.yataklar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odalar">
+              <PropertyRef Name="oda_id" />
+            </Principal>
+            <Dependent Role="yataklar">
+              <PropertyRef Name="oda_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_adSoyadList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="adi" Type="varchar" Mode="In" />
+          <Parameter Name="soyadi" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="YurtOtomasyonModelStoreContainer">
+          <EntitySet Name="misafirler" EntityType="Self.misafirler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="odalar" EntityType="Self.odalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ogrenciler" EntityType="Self.ogrenciler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tahsilatlar" EntityType="Self.tahsilatlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yataklar" EntityType="Self.yataklar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yetkililer" EntityType="Self.yetkililer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ogrenciler_odalar" Association="Self.FK_ogrenciler_odalar">
+            <End Role="odalar" EntitySet="odalar" />
+            <End Role="ogrenciler" EntitySet="ogrenciler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tahsilatlar_ogrenciler" Association="Self.FK_tahsilatlar_ogrenciler">
+            <End Role="ogrenciler" EntitySet="ogrenciler" />
+            <End Role="tahsilatlar" EntitySet="tahsilatlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_yataklar_odalar" Association="Self.FK_yataklar_odalar">
+            <End Role="odalar" EntitySet="odalar" />
+            <End Role="yataklar" EntitySet="yataklar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YurtOtomasyonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="misafirler">
+          <Key>
+            <PropertyRef Name="mis_id" />
+          </Key>
+          <Property Name="mis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mis_tcPas" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="mis_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mis_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mis_cinsiyet" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="mis_uyruk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="mis_tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mis_giris" Type="DateTime" Precision="0" />
+          <Property Name="mis_cikis" Type="DateTime" Precision="0" />
+          <Property Name="mis_kgun" Type="Int32" />
+          <Property Name="mis_yatakucret" Type="Int32" />
+          <Property Name="mis_borc" Type="Int32" />
+        </EntityType>
+        <EntityType Name="odalar">
+          <Key>
+            <PropertyRef Name="oda_id" />
+          </Key>
+          <Property Name="oda_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="oda_no" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ogrenciler" Relationship="Self.FK_ogrenciler_odalar" FromRole="odalar" ToRole="ogrenciler" />
+          <NavigationProperty Name="yataklar" Relationship="Self.FK_yataklar_odalar" FromRole="odalar" ToRole="yataklar" />
+        </EntityType>
+        <EntityType Name="ogrenciler">
+          <Key>
+            <PropertyRef Name="ogr_id" />
+          </Key>
+          <Property Name="ogr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogr_tcPas" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="ogr_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ogr_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ogr_cinsiyet" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ogr_kan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ogr_uyruk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ogr_tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ogr_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ogr_adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ogr_egitim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="oda_id" Type="Int32" />
+          <NavigationProperty Name="odalar" Relationship="Self.FK_ogrenciler_odalar" FromRole="ogrenciler" ToRole="odalar" />
+          <NavigationProperty Name="tahsilatlar" Relationship="Self.FK_tahsilatlar_ogrenciler" FromRole="ogrenciler" ToRole="tahsilatlar" />
+        </EntityType>
+        <EntityType Name="tahsilatlar">
+          <Key>
+            <PropertyRef Name="tah_id" />
+          </Key>
+          <Property Name="tah_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tah_ogrID" Type="Int32" />
+          <Property Name="tah_tutar" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="tah_sontarih" Type="DateTime" Precision="0" />
+          <Property Name="tah_durum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ogrenciler" Relationship="Self.FK_tahsilatlar_ogrenciler" FromRole="tahsilatlar" ToRole="ogrenciler" />
+        </EntityType>
+        <EntityType Name="yataklar">
+          <Key>
+            <PropertyRef Name="yat_id" />
+          </Key>
+          <Property Name="yat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yat_no" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="yat_durum" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="oda_id" Type="Int32" />
+          <NavigationProperty Name="odalar" Relationship="Self.FK_yataklar_odalar" FromRole="yataklar" ToRole="odalar" />
+        </EntityType>
+        <EntityType Name="yetkililer">
+          <Key>
+            <PropertyRef Name="yet_id" />
+          </Key>
+          <Property Name="yet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yet_kullaniciAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="yet_sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="yet_tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="yet_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_ogrenciler_odalar">
+          <End Role="odalar" Type="Self.odalar" Multiplicity="0..1" />
+          <End Role="ogrenciler" Type="Self.ogrenciler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odalar">
+              <PropertyRef Name="oda_id" />
+            </Principal>
+            <Dependent Role="ogrenciler">
+              <PropertyRef Name="oda_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_yataklar_odalar">
+          <End Role="odalar" Type="Self.odalar" Multiplicity="0..1" />
+          <End Role="yataklar" Type="Self.yataklar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odalar">
+              <PropertyRef Name="oda_id" />
+            </Principal>
+            <Dependent Role="yataklar">
+              <PropertyRef Name="oda_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tahsilatlar_ogrenciler">
+          <End Role="ogrenciler" Type="Self.ogrenciler" Multiplicity="0..1" />
+          <End Role="tahsilatlar" Type="Self.tahsilatlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ogrenciler">
+              <PropertyRef Name="ogr_id" />
+            </Principal>
+            <Dependent Role="tahsilatlar">
+              <PropertyRef Name="tah_ogrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YurtOtomasyonEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="misafirler" EntityType="Self.misafirler" />
+          <EntitySet Name="odalar" EntityType="Self.odalar" />
+          <EntitySet Name="ogrenciler" EntityType="Self.ogrenciler" />
+          <EntitySet Name="tahsilatlar" EntityType="Self.tahsilatlar" />
+          <EntitySet Name="yataklar" EntityType="Self.yataklar" />
+          <EntitySet Name="yetkililer" EntityType="Self.yetkililer" />
+          <AssociationSet Name="FK_ogrenciler_odalar" Association="Self.FK_ogrenciler_odalar">
+            <End Role="odalar" EntitySet="odalar" />
+            <End Role="ogrenciler" EntitySet="ogrenciler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_yataklar_odalar" Association="Self.FK_yataklar_odalar">
+            <End Role="odalar" EntitySet="odalar" />
+            <End Role="yataklar" EntitySet="yataklar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tahsilatlar_ogrenciler" Association="Self.FK_tahsilatlar_ogrenciler">
+            <End Role="ogrenciler" EntitySet="ogrenciler" />
+            <End Role="tahsilatlar" EntitySet="tahsilatlar" />
+          </AssociationSet>
+          <FunctionImport Name="SP_adSoyadList" ReturnType="Collection(YurtOtomasyonModel.SP_adSoyadList_Result)">
+            <Parameter Name="adi" Mode="In" Type="String" />
+            <Parameter Name="soyadi" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_adSoyadList_Result">
+          <Property Type="Int32" Name="ogr_id" Nullable="false" />
+          <Property Type="String" Name="ogr_tcPas" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="ogr_ad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ogr_soyad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ogr_cinsiyet" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ogr_kan" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ogr_uyruk" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ogr_tel" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ogr_email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ogr_adres" Nullable="true" />
+          <Property Type="String" Name="ogr_egitim" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="oda_id" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YurtOtomasyonModelStoreContainer" CdmEntityContainer="YurtOtomasyonEntities">
+          <EntitySetMapping Name="misafirler">
+            <EntityTypeMapping TypeName="YurtOtomasyonModel.misafirler">
+              <MappingFragment StoreEntitySet="misafirler">
+                <ScalarProperty Name="mis_id" ColumnName="mis_id" />
+                <ScalarProperty Name="mis_tcPas" ColumnName="mis_tcPas" />
+                <ScalarProperty Name="mis_ad" ColumnName="mis_ad" />
+                <ScalarProperty Name="mis_soyad" ColumnName="mis_soyad" />
+                <ScalarProperty Name="mis_cinsiyet" ColumnName="mis_cinsiyet" />
+                <ScalarProperty Name="mis_uyruk" ColumnName="mis_uyruk" />
+                <ScalarProperty Name="mis_tel" ColumnName="mis_tel" />
+                <ScalarProperty Name="mis_giris" ColumnName="mis_giris" />
+                <ScalarProperty Name="mis_cikis" ColumnName="mis_cikis" />
+                <ScalarProperty Name="mis_kgun" ColumnName="mis_kgun" />
+                <ScalarProperty Name="mis_yatakucret" ColumnName="mis_yatakucret" />
+                <ScalarProperty Name="mis_borc" ColumnName="mis_borc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="odalar">
+            <EntityTypeMapping TypeName="YurtOtomasyonModel.odalar">
+              <MappingFragment StoreEntitySet="odalar">
+                <ScalarProperty Name="oda_id" ColumnName="oda_id" />
+                <ScalarProperty Name="oda_no" ColumnName="oda_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ogrenciler">
+            <EntityTypeMapping TypeName="YurtOtomasyonModel.ogrenciler">
+              <MappingFragment StoreEntitySet="ogrenciler">
+                <ScalarProperty Name="ogr_id" ColumnName="ogr_id" />
+                <ScalarProperty Name="ogr_tcPas" ColumnName="ogr_tcPas" />
+                <ScalarProperty Name="ogr_ad" ColumnName="ogr_ad" />
+                <ScalarProperty Name="ogr_soyad" ColumnName="ogr_soyad" />
+                <ScalarProperty Name="ogr_cinsiyet" ColumnName="ogr_cinsiyet" />
+                <ScalarProperty Name="ogr_kan" ColumnName="ogr_kan" />
+                <ScalarProperty Name="ogr_uyruk" ColumnName="ogr_uyruk" />
+                <ScalarProperty Name="ogr_tel" ColumnName="ogr_tel" />
+                <ScalarProperty Name="ogr_email" ColumnName="ogr_email" />
+                <ScalarProperty Name="ogr_adres" ColumnName="ogr_adres" />
+                <ScalarProperty Name="ogr_egitim" ColumnName="ogr_egitim" />
+                <ScalarProperty Name="oda_id" ColumnName="oda_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tahsilatlar">
+            <EntityTypeMapping TypeName="YurtOtomasyonModel.tahsilatlar">
+              <MappingFragment StoreEntitySet="tahsilatlar">
+                <ScalarProperty Name="tah_id" ColumnName="tah_id" />
+                <ScalarProperty Name="tah_ogrID" ColumnName="tah_ogrID" />
+                <ScalarProperty Name="tah_tutar" ColumnName="tah_tutar" />
+                <ScalarProperty Name="tah_sontarih" ColumnName="tah_sontarih" />
+                <ScalarProperty Name="tah_durum" ColumnName="tah_durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yataklar">
+            <EntityTypeMapping TypeName="YurtOtomasyonModel.yataklar">
+              <MappingFragment StoreEntitySet="yataklar">
+                <ScalarProperty Name="yat_id" ColumnName="yat_id" />
+                <ScalarProperty Name="yat_no" ColumnName="yat_no" />
+                <ScalarProperty Name="yat_durum" ColumnName="yat_durum" />
+                <ScalarProperty Name="oda_id" ColumnName="oda_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yetkililer">
+            <EntityTypeMapping TypeName="YurtOtomasyonModel.yetkililer">
+              <MappingFragment StoreEntitySet="yetkililer">
+                <ScalarProperty Name="yet_id" ColumnName="yet_id" />
+                <ScalarProperty Name="yet_kullaniciAd" ColumnName="yet_kullaniciAd" />
+                <ScalarProperty Name="yet_sifre" ColumnName="yet_sifre" />
+                <ScalarProperty Name="yet_tel" ColumnName="yet_tel" />
+                <ScalarProperty Name="yet_email" ColumnName="yet_email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_adSoyadList" FunctionName="YurtOtomasyonModel.Store.SP_adSoyadList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YurtOtomasyonModel.SP_adSoyadList_Result">
+                <ScalarProperty Name="ogr_id" ColumnName="ogr_id" />
+                <ScalarProperty Name="ogr_tcPas" ColumnName="ogr_tcPas" />
+                <ScalarProperty Name="ogr_ad" ColumnName="ogr_ad" />
+                <ScalarProperty Name="ogr_soyad" ColumnName="ogr_soyad" />
+                <ScalarProperty Name="ogr_cinsiyet" ColumnName="ogr_cinsiyet" />
+                <ScalarProperty Name="ogr_kan" ColumnName="ogr_kan" />
+                <ScalarProperty Name="ogr_uyruk" ColumnName="ogr_uyruk" />
+                <ScalarProperty Name="ogr_tel" ColumnName="ogr_tel" />
+                <ScalarProperty Name="ogr_email" ColumnName="ogr_email" />
+                <ScalarProperty Name="ogr_adres" ColumnName="ogr_adres" />
+                <ScalarProperty Name="ogr_egitim" ColumnName="ogr_egitim" />
+                <ScalarProperty Name="oda_id" ColumnName="oda_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

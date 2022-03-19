@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Yurt.Models.misafirler>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ASArama</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        @{Html.BeginForm();}
+        @Html.Label("aramaalani", "Arama Yapılacak Bölümü Seçiniz")
+
+        @Html.DropDownList("alanadi", new[] {
+      new SelectListItem { Text="Ad",Value="A"},
+      new SelectListItem { Text="Soyad",Value="S"}, }, "Alan Seçiniz")
+
+        @Html.TextBox("aranandeger", "", new { @placeholder = "Aranacak değeri giriniz." })
+        <input type="submit" value="Ara" />
+        @{Html.EndForm();}
+    </div>
+
+
+    <table class="table1">
+        <tr>
+            <th>ID</th>
+            <th>TC/Pasaport No</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Cinsiyet</th>
+            <th>Uyruk</th>
+            <th>Telefon</th>
+            <th>Giriş</th>
+            <th>Çıkış</th>
+            <th>Kalacağı Gün</th>
+            <th>Yatak Ucreti</th>
+            <th>Borç</th>
+        </tr>
+
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="6">Böyle bir kayıt yok.</td>
+            </tr>
+        }
+
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.mis_id</td>
+                    <td>@item.mis_tcPas</td>
+                    <td>@item.mis_ad</td>
+                    <td>@item.mis_soyad</td>
+                    <td>@item.mis_cinsiyet</td>
+                    <td>@item.mis_uyruk</td>
+                    <td>@item.mis_tel</td>
+                    <td>@item.mis_giris</td>
+                    <td>@item.mis_cikis</td>
+                    <td>@item.mis_kgun</td>
+                    <td>@item.mis_yatakucret</td>
+                    <td>@item.mis_borc</td>
+                </tr>
+            }
+        }
+    </table>
+
+</body>
+</html>

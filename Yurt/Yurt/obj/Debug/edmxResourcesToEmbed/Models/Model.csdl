@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YurtOtomasyonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="misafirler">
+    <Key>
+      <PropertyRef Name="mis_id" />
+    </Key>
+    <Property Name="mis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mis_tcPas" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="mis_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mis_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mis_cinsiyet" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="mis_uyruk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="mis_tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mis_giris" Type="DateTime" Precision="0" />
+    <Property Name="mis_cikis" Type="DateTime" Precision="0" />
+    <Property Name="mis_kgun" Type="Int32" />
+    <Property Name="mis_yatakucret" Type="Int32" />
+    <Property Name="mis_borc" Type="Int32" />
+  </EntityType>
+  <EntityType Name="odalar">
+    <Key>
+      <PropertyRef Name="oda_id" />
+    </Key>
+    <Property Name="oda_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="oda_no" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="ogrenciler" Relationship="Self.FK_ogrenciler_odalar" FromRole="odalar" ToRole="ogrenciler" />
+    <NavigationProperty Name="yataklar" Relationship="Self.FK_yataklar_odalar" FromRole="odalar" ToRole="yataklar" />
+  </EntityType>
+  <EntityType Name="ogrenciler">
+    <Key>
+      <PropertyRef Name="ogr_id" />
+    </Key>
+    <Property Name="ogr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ogr_tcPas" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="ogr_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ogr_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ogr_cinsiyet" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ogr_kan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ogr_uyruk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ogr_tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ogr_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ogr_adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ogr_egitim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="oda_id" Type="Int32" />
+    <NavigationProperty Name="odalar" Relationship="Self.FK_ogrenciler_odalar" FromRole="ogrenciler" ToRole="odalar" />
+    <NavigationProperty Name="tahsilatlar" Relationship="Self.FK_tahsilatlar_ogrenciler" FromRole="ogrenciler" ToRole="tahsilatlar" />
+  </EntityType>
+  <EntityType Name="tahsilatlar">
+    <Key>
+      <PropertyRef Name="tah_id" />
+    </Key>
+    <Property Name="tah_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tah_ogrID" Type="Int32" />
+    <Property Name="tah_tutar" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="tah_sontarih" Type="DateTime" Precision="0" />
+    <Property Name="tah_durum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ogrenciler" Relationship="Self.FK_tahsilatlar_ogrenciler" FromRole="tahsilatlar" ToRole="ogrenciler" />
+  </EntityType>
+  <EntityType Name="yataklar">
+    <Key>
+      <PropertyRef Name="yat_id" />
+    </Key>
+    <Property Name="yat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="yat_no" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="yat_durum" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="oda_id" Type="Int32" />
+    <NavigationProperty Name="odalar" Relationship="Self.FK_yataklar_odalar" FromRole="yataklar" ToRole="odalar" />
+  </EntityType>
+  <EntityType Name="yetkililer">
+    <Key>
+      <PropertyRef Name="yet_id" />
+    </Key>
+    <Property Name="yet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="yet_kullaniciAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="yet_sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="yet_tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="yet_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_ogrenciler_odalar">
+    <End Role="odalar" Type="Self.odalar" Multiplicity="0..1" />
+    <End Role="ogrenciler" Type="Self.ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="odalar">
+        <PropertyRef Name="oda_id" />
+      </Principal>
+      <Dependent Role="ogrenciler">
+        <PropertyRef Name="oda_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_yataklar_odalar">
+    <End Role="odalar" Type="Self.odalar" Multiplicity="0..1" />
+    <End Role="yataklar" Type="Self.yataklar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="odalar">
+        <PropertyRef Name="oda_id" />
+      </Principal>
+      <Dependent Role="yataklar">
+        <PropertyRef Name="oda_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tahsilatlar_ogrenciler">
+    <End Role="ogrenciler" Type="Self.ogrenciler" Multiplicity="0..1" />
+    <End Role="tahsilatlar" Type="Self.tahsilatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ogrenciler">
+        <PropertyRef Name="ogr_id" />
+      </Principal>
+      <Dependent Role="tahsilatlar">
+        <PropertyRef Name="tah_ogrID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="YurtOtomasyonEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="misafirler" EntityType="Self.misafirler" />
+    <EntitySet Name="odalar" EntityType="Self.odalar" />
+    <EntitySet Name="ogrenciler" EntityType="Self.ogrenciler" />
+    <EntitySet Name="tahsilatlar" EntityType="Self.tahsilatlar" />
+    <EntitySet Name="yataklar" EntityType="Self.yataklar" />
+    <EntitySet Name="yetkililer" EntityType="Self.yetkililer" />
+    <AssociationSet Name="FK_ogrenciler_odalar" Association="Self.FK_ogrenciler_odalar">
+      <End Role="odalar" EntitySet="odalar" />
+      <End Role="ogrenciler" EntitySet="ogrenciler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_yataklar_odalar" Association="Self.FK_yataklar_odalar">
+      <End Role="odalar" EntitySet="odalar" />
+      <End Role="yataklar" EntitySet="yataklar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tahsilatlar_ogrenciler" Association="Self.FK_tahsilatlar_ogrenciler">
+      <End Role="ogrenciler" EntitySet="ogrenciler" />
+      <End Role="tahsilatlar" EntitySet="tahsilatlar" />
+    </AssociationSet>
+    <FunctionImport Name="SP_adSoyadList" ReturnType="Collection(YurtOtomasyonModel.SP_adSoyadList_Result)">
+      <Parameter Name="adi" Mode="In" Type="String" />
+      <Parameter Name="soyadi" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_adSoyadList_Result">
+    <Property Type="Int32" Name="ogr_id" Nullable="false" />
+    <Property Type="String" Name="ogr_tcPas" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="ogr_ad" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ogr_soyad" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ogr_cinsiyet" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="ogr_kan" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="ogr_uyruk" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="ogr_tel" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ogr_email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ogr_adres" Nullable="true" />
+    <Property Type="String" Name="ogr_egitim" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="oda_id" Nullable="true" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Yurt.Models.ogrenciler>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Yeni Kayıt", "KayitEkle")
+        @Html.ActionLink("Öğrenci Ara","AdSoyadArama") 
+    </p>
+    <table class="table1">
+        <tr>
+            <th>
+                @Html.DisplayName("TC/Pasaport No")
+            </th>
+            <th>
+                @Html.DisplayName("Ad")
+            </th>
+            <th>
+                @Html.DisplayName("Soyad")
+            </th>
+            <th>
+                @Html.DisplayName("Cinsiyet")
+            </th>
+            <th>
+                @Html.DisplayName("Kan Grubu")
+            </th>
+            <th>
+                @Html.DisplayName("Uyruk")
+            </th>
+            <th>
+                @Html.DisplayName("Telefon")
+            </th>
+            <th>
+                @Html.DisplayName("E-Mail")
+            </th>
+            <th>
+                @Html.DisplayName("Adres")
+            </th>
+            <th>
+                @Html.DisplayName("Egitim Durumu")
+            </th>
+            <th>
+                @Html.DisplayName("Oda No")
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogr_tcPas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogr_ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogr_soyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogr_cinsiyet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogr_kan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogr_uyruk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogr_tel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogr_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogr_adres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogr_egitim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.odalar.oda_no)
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "KayitGuncelle", new { id=item.ogr_id })
+                @Html.ActionLink("Sil", "KayitSil", new { id=item.ogr_id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

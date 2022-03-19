@@ -1,0 +1,73 @@
+﻿@model IEnumerable < Yurt.Models.ogrenciler>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AdSoyadArama</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+   <div>
+       @{Html.BeginForm();}
+       @Html.Label("aramaalani","Arama Yapılacak Bölümü Seçiniz")
+
+       @Html.DropDownList("alanadi",new[] {
+      new SelectListItem { Text="Ad",Value="a"},
+      new SelectListItem { Text="Soyad",Value="s"}, }, "Alan Seçiniz")
+
+       @Html.TextBox("aranandeger","",new { @placeholder="Aranacak değeri giriniz."})
+       <input type="submit" value="Ara"/>
+       @{Html.EndForm();}
+    </div>
+
+    <table class="table1">
+        <tr>
+            <th>ID</th>
+            <th>TC/Pasaport No</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Cinsiyet</th>
+            <th>Kan Grubu</th>
+            <th>Uyruk</th>
+            <th>Telefon</th>
+            <th>EMail</th>
+            <th>Adres</th>
+            <th>Eğitim Durumu</th>
+            <th>Oda ID</th>            
+        </tr>
+
+        @if (Model.Count() == 0)
+        {
+                <tr>
+                    <td colspan="6">Böyle bir kayıt yok.</td>
+                </tr>
+        }
+
+        else {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ogr_id</td>
+                    <td>@item.ogr_tcPas</td>
+                    <td>@item.ogr_ad</td>
+                    <td>@item.ogr_soyad</td>
+                    <td>@item.ogr_cinsiyet</td>
+                    <td>@item.ogr_kan</td>
+                    <td>@item.ogr_uyruk</td>
+                    <td>@item.ogr_tel</td>
+                    <td>@item.ogr_email</td>
+                    <td>@item.ogr_adres</td>
+                    <td>@item.ogr_egitim</td>
+                    <td>@item.oda_id</td>
+                </tr>
+            }
+        }
+    </table>
+
+</body>
+</html>

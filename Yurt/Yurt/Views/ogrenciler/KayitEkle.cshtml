@@ -1,0 +1,123 @@
+﻿@model Yurt.Models.ogrenciler
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>KayitEkle</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("TC/Pasaport No")
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ogr_tcPas, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ogr_tcPas, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("Ad")
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ogr_ad, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ogr_ad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("Soyad")
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ogr_soyad, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ogr_soyad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("Cinsiyet")
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ogr_cinsiyet, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ogr_cinsiyet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("Kan Grubu")
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ogr_kan, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ogr_kan, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("Uyruk")
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ogr_uyruk, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ogr_uyruk, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("Telefon")
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ogr_tel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ogr_tel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("E-Mail")
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ogr_email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ogr_email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("Adres")
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ogr_adres, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ogr_adres, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("Eğitim Durumu")
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ogr_egitim, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ogr_egitim, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.Label("Oda Id")
+                <div class="col-md-10">
+                    @Html.DropDownList("oda_id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.oda_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Ekle" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Listeye Geri Dön", "Index")
+    </div>
+</body>
+</html>

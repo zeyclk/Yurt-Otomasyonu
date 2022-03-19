@@ -1,0 +1,54 @@
+﻿a:link, a:visited {
+    background-color: #709da1;
+    border: none;
+    color: #FFFFFF;
+    padding: 15px 32px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration:none;
+   font-size: 16px;
+   cursor: pointer;
+   display: inline-block;
+
+}
+
+a:hover, a:active {
+
+   background-color: #494949;
+}    
+
+body {
+    background-image: url('../İmages/bg.png');
+}
+
+.ortalama{
+    width: 700px;
+    margin: 0px auto;
+    background:none;
+    height:500px;
+    color:#fff;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin-left: -250px;
+    margin-top:-50px;
+}
+
+.table1{
+  border-collapse: collapse;
+}
+
+.table1 th{
+  border: 1px solid black;
+  background-color:gray;
+}
+.table1 td {
+  border: 1px solid black;
+}
+.table1 tr {
+        background-color:#FFFFFF;
+    }
+
+
+

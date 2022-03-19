@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Yurt.Models.misafirler>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Misafir Ekle", "KayitEkle")
+        @Html.ActionLink("Misafir Ara","ASArama")
+    </p>
+    <table class="table1">
+        <tr>
+            <th>
+                @Html.DisplayName("Tc/Pasaport")
+            </th>
+            <th>
+                @Html.DisplayName("Ad")
+            </th>
+            <th>
+                @Html.DisplayName("Soyad")
+            </th>
+            <th>
+                @Html.DisplayName("Cinsiyet")
+            </th>
+            <th>
+                @Html.DisplayName("Uyruk")
+            </th>
+            <th>
+                @Html.DisplayName("Telefon Numarası")
+            </th>
+            <th>
+                @Html.DisplayName("Giriş Tarihi")
+            </th>
+            <th>
+                @Html.DisplayName("Çıkış Tarihi")
+            </th>
+            <th>
+                @Html.DisplayName("Kalacak Gün Sayısı")
+            </th>
+            <th>
+                @Html.DisplayName("Yatak Ücreti")
+            </th>
+            <th>
+                @Html.DisplayName("Borç")
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_tcPas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_soyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_cinsiyet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_uyruk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_tel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_giris)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_cikis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_kgun)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_yatakucret)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mis_borc)
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "KayitGuncele", new { id=item.mis_id }) |
+                @Html.ActionLink("Sil", "KayitSil", new { id=item.mis_id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

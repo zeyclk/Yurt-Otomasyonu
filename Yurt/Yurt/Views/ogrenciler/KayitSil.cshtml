@@ -1,0 +1,120 @@
+﻿@model Yurt.Models.ogrenciler
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>KayitSil</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <h3>Bunu gerçekten silmek istiyor musunuz?</h3>
+    <div>
+        
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.Label("TC/Pasaport No")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_tcPas)
+            </dd>
+    
+            <dt>
+                @Html.Label("Ad")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_ad)
+            </dd>
+    
+            <dt>
+                @Html.Label("Soyad")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_soyad)
+            </dd>
+    
+            <dt>
+                @Html.Label("Cinsiyet")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_cinsiyet)
+            </dd>
+    
+            <dt>
+                @Html.Label("Kan Grubu")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_kan)
+            </dd>
+    
+            <dt>
+                @Html.Label("Uyruk")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_uyruk)
+            </dd>
+    
+            <dt>
+                @Html.Label("Telefon")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_tel)
+            </dd>
+    
+            <dt>
+                @Html.Label("E-Mail")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_email)
+            </dd>
+    
+            <dt>
+                @Html.Label("Adres")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_adres)
+            </dd>
+    
+            <dt>
+                @Html.Label("Eğitim Durumu")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ogr_egitim)
+            </dd>
+    
+            <dt>
+                @Html.Label("Oda No")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.odalar.oda_no)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="btn btn-default" /> |
+                @Html.ActionLink("Listeye Geri Dön", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

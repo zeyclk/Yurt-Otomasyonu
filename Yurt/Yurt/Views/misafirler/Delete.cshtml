@@ -1,0 +1,120 @@
+﻿@model Yurt.Models.misafirler
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>misafirler</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_tcPas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_tcPas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_ad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_ad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_soyad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_soyad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_cinsiyet)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_cinsiyet)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_uyruk)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_uyruk)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_tel)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_tel)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_giris)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_giris)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_cikis)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_cikis)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_kgun)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_kgun)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_yatakucret)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_yatakucret)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.mis_borc)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.mis_borc)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

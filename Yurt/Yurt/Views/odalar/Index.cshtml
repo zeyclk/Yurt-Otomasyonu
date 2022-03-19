@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Yurt.Models.odalar>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Oda Ekle", "OdaEkle")
+        @Html.ActionLink("Oda Ara","OdaArama")
+    </p>
+    <table class="table1">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.oda_no)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.oda_no)
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "OdaGuncelle", new { id=item.oda_id }) |
+                @Html.ActionLink("Sil", "OdaSil", new { id=item.oda_id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

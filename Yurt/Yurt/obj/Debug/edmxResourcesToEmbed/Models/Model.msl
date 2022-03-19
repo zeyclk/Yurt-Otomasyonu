@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="YurtOtomasyonModelStoreContainer" CdmEntityContainer="YurtOtomasyonEntities">
+    <EntitySetMapping Name="misafirler">
+      <EntityTypeMapping TypeName="YurtOtomasyonModel.misafirler">
+        <MappingFragment StoreEntitySet="misafirler">
+          <ScalarProperty Name="mis_id" ColumnName="mis_id" />
+          <ScalarProperty Name="mis_tcPas" ColumnName="mis_tcPas" />
+          <ScalarProperty Name="mis_ad" ColumnName="mis_ad" />
+          <ScalarProperty Name="mis_soyad" ColumnName="mis_soyad" />
+          <ScalarProperty Name="mis_cinsiyet" ColumnName="mis_cinsiyet" />
+          <ScalarProperty Name="mis_uyruk" ColumnName="mis_uyruk" />
+          <ScalarProperty Name="mis_tel" ColumnName="mis_tel" />
+          <ScalarProperty Name="mis_giris" ColumnName="mis_giris" />
+          <ScalarProperty Name="mis_cikis" ColumnName="mis_cikis" />
+          <ScalarProperty Name="mis_kgun" ColumnName="mis_kgun" />
+          <ScalarProperty Name="mis_yatakucret" ColumnName="mis_yatakucret" />
+          <ScalarProperty Name="mis_borc" ColumnName="mis_borc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="odalar">
+      <EntityTypeMapping TypeName="YurtOtomasyonModel.odalar">
+        <MappingFragment StoreEntitySet="odalar">
+          <ScalarProperty Name="oda_id" ColumnName="oda_id" />
+          <ScalarProperty Name="oda_no" ColumnName="oda_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ogrenciler">
+      <EntityTypeMapping TypeName="YurtOtomasyonModel.ogrenciler">
+        <MappingFragment StoreEntitySet="ogrenciler">
+          <ScalarProperty Name="ogr_id" ColumnName="ogr_id" />
+          <ScalarProperty Name="ogr_tcPas" ColumnName="ogr_tcPas" />
+          <ScalarProperty Name="ogr_ad" ColumnName="ogr_ad" />
+          <ScalarProperty Name="ogr_soyad" ColumnName="ogr_soyad" />
+          <ScalarProperty Name="ogr_cinsiyet" ColumnName="ogr_cinsiyet" />
+          <ScalarProperty Name="ogr_kan" ColumnName="ogr_kan" />
+          <ScalarProperty Name="ogr_uyruk" ColumnName="ogr_uyruk" />
+          <ScalarProperty Name="ogr_tel" ColumnName="ogr_tel" />
+          <ScalarProperty Name="ogr_email" ColumnName="ogr_email" />
+          <ScalarProperty Name="ogr_adres" ColumnName="ogr_adres" />
+          <ScalarProperty Name="ogr_egitim" ColumnName="ogr_egitim" />
+          <ScalarProperty Name="oda_id" ColumnName="oda_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tahsilatlar">
+      <EntityTypeMapping TypeName="YurtOtomasyonModel.tahsilatlar">
+        <MappingFragment StoreEntitySet="tahsilatlar">
+          <ScalarProperty Name="tah_id" ColumnName="tah_id" />
+          <ScalarProperty Name="tah_ogrID" ColumnName="tah_ogrID" />
+          <ScalarProperty Name="tah_tutar" ColumnName="tah_tutar" />
+          <ScalarProperty Name="tah_sontarih" ColumnName="tah_sontarih" />
+          <ScalarProperty Name="tah_durum" ColumnName="tah_durum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yataklar">
+      <EntityTypeMapping TypeName="YurtOtomasyonModel.yataklar">
+        <MappingFragment StoreEntitySet="yataklar">
+          <ScalarProperty Name="yat_id" ColumnName="yat_id" />
+          <ScalarProperty Name="yat_no" ColumnName="yat_no" />
+          <ScalarProperty Name="yat_durum" ColumnName="yat_durum" />
+          <ScalarProperty Name="oda_id" ColumnName="oda_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yetkililer">
+      <EntityTypeMapping TypeName="YurtOtomasyonModel.yetkililer">
+        <MappingFragment StoreEntitySet="yetkililer">
+          <ScalarProperty Name="yet_id" ColumnName="yet_id" />
+          <ScalarProperty Name="yet_kullaniciAd" ColumnName="yet_kullaniciAd" />
+          <ScalarProperty Name="yet_sifre" ColumnName="yet_sifre" />
+          <ScalarProperty Name="yet_tel" ColumnName="yet_tel" />
+          <ScalarProperty Name="yet_email" ColumnName="yet_email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_adSoyadList" FunctionName="YurtOtomasyonModel.Store.SP_adSoyadList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="YurtOtomasyonModel.SP_adSoyadList_Result">
+          <ScalarProperty Name="ogr_id" ColumnName="ogr_id" />
+          <ScalarProperty Name="ogr_tcPas" ColumnName="ogr_tcPas" />
+          <ScalarProperty Name="ogr_ad" ColumnName="ogr_ad" />
+          <ScalarProperty Name="ogr_soyad" ColumnName="ogr_soyad" />
+          <ScalarProperty Name="ogr_cinsiyet" ColumnName="ogr_cinsiyet" />
+          <ScalarProperty Name="ogr_kan" ColumnName="ogr_kan" />
+          <ScalarProperty Name="ogr_uyruk" ColumnName="ogr_uyruk" />
+          <ScalarProperty Name="ogr_tel" ColumnName="ogr_tel" />
+          <ScalarProperty Name="ogr_email" ColumnName="ogr_email" />
+          <ScalarProperty Name="ogr_adres" ColumnName="ogr_adres" />
+          <ScalarProperty Name="ogr_egitim" ColumnName="ogr_egitim" />
+          <ScalarProperty Name="oda_id" ColumnName="oda_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

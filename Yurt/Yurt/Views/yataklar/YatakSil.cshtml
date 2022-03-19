@@ -1,0 +1,56 @@
+﻿@model Yurt.Models.yataklar
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>YatakSil</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <h3>Bunu silmek istediğinize emin misiniz?</h3>
+    <div>
+        
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Yatak No")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.yat_no)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Yatak Durum")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.yat_durum)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Oda No")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.odalar.oda_no)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="btn btn-default" /> |
+                @Html.ActionLink("Listeye Geri Dön", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

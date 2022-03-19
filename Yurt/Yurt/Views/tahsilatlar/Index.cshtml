@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Yurt.Models.tahsilatlar>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Yeni Tahsilat", "TahsilatEkle")<br />
+        @Html.ActionLink("Tüm Kayıtları Sil","HepsiniSil")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Tahsilat Tutar")
+            </th>
+            <th>
+                @Html.DisplayName("Son Ödeme Tarihi")
+            </th>
+            <th>
+                @Html.DisplayName("Ödeme Durumu")
+            </th>
+            <th>
+                @Html.DisplayName("TC/Pasaport No")
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tah_tutar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tah_sontarih)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tah_durum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogrenciler.ogr_tcPas)
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "Edit", new { id=item.tah_id }) |
+                @Html.ActionLink("Sil", "TahsilatSil", new { id=item.tah_id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Yurt.Models.yataklar>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>YatakArama</title>
+    <link href="~/Css/stil.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        @{Html.BeginForm();}
+        @Html.Label("aramaalani", "Yatak Numarası Giriniz")
+
+        @Html.TextBox("aranan", "", new { @placeholder = "Aranacak değeri giriniz." })
+        <input type="submit" value="Ara" />
+        @{Html.EndForm();}
+    </div>
+
+    <table class="table1">
+        <tr>
+            <th>ID</th>
+            <th>Yatak No</th>
+            <th>Yatak Durum</th>
+            
+        </tr>
+
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="6">Böyle bir kayıt yok.</td>
+            </tr>
+        }
+
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.yat_id</td>
+                    <td>@item.yat_no</td>
+                    <td>@item.yat_durum</td>
+                    <td>@item.oda_id</td>
+                </tr>
+            }
+        }
+    </table>
+</body>
+</html>
